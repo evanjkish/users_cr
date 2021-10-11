@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read</title>
+</head>
+<body>
+    <h1>index</h1>
+    {% for one_user in users %}
+    <p>First Name: {{one_user.first_name}}</p>
+    <p>Last Name: {{one_user.last_name}}</p>
+    <p>email: {{one_user.email}}</p>
+    <p>Created at: {{one_user.created_at}}</p>
+    <hr>
+{% endfor %}
+
+<a href="create">Create New User</a>
+</body>
+</html>
