@@ -21,9 +21,36 @@ def create_user():
         'lname': request.form['lname'],
         'email': request.form['email']
     }
-    User.save(data)
-    return redirect('/')
+    id = User.save(data)
+    return redirect(f"/users/{id}")
 
+@app.route('/users/<int:id>')
+def show_user(id):
+    data = {
+        'id' : id
+    }
+    return render_template('kms.html', one_user = User.get_one(data))
+
+@app.route('/edit/<int:id>')
+def edit(id):
+    data = {
+        'id' : id
+    }
+    return render_template('edit.html', one_user = User.get_one(data))
+
+@app.route('/edit_user', methods=['POST'])
+def edit_user():
+    User.edit(request.form)
+    id = request.form['id']
+    return redirect(f"/users/{id}")
+
+@app.route('/delete_user/<int:id>')
+def delete_user(id):
+    data = {
+        'id' : id
+    }
+    User.delete(data)
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True)
